@@ -119,13 +119,13 @@
                   class="option align-center" dense
                 >
                   <q-item-section side>
-                    <span class="text-bold">{{index + 1}}</span>
+                    <span class="text-bold">{{option_index + 1}}</span>
                   </q-item-section>
                   <q-item-section>
                     <q-input
                       outlined
-                      :label="'Option ' + (index + 1)"
-                      v-model="element.answers[index]"
+                      :label="'Option ' + (option_index + 1)"
+                      v-model="element.answers[option_index]"
                       lazy-rules
                       dense
                       class="q-ma-none"
@@ -222,7 +222,7 @@ export default {
       this.list.splice(idx, 1);
     },
     add() {
-      this.questions.push(this.simpleQuestion);
+      this.questions.push({...this.simpleQuestion});
     },
     filterFn (val, update) {
       if (val === '') {
@@ -242,7 +242,7 @@ export default {
       return this.questions[index].correct_answer.some((ob) => ob.option_index === option_index)
     },
     onCorrectAnswerToggleChanged(val, evt){
-      console.log(val, evt)
+      // console.log(val, evt)
       let lastElement = val.pop()
       let [index, option_index] = lastElement.split(' ')
       this.questions[index].correct_answer = [lastElement]
