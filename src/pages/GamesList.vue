@@ -1,54 +1,74 @@
 <template>
-  <div class="row">
-    <div class="col-1">
-      <button class="btn btn-secondary button" @click="add">Add</button>
-    </div>
+<!-- 
+  <h3>Draggable {{ draggingInfo }}</h3>
+  <button class="btn btn-secondary button" @click="add">Add</button> -->
 
-    <div class="col-7">
-      <h3>Draggable {{ draggingInfo }}</h3>
+  <draggable
+    tag="ul"
+    :list="list"
+    v-bind="dragOptions"
+    class="list-group"
+    handle=".handle"
+    item-key="name"
+  >
+    <template #item="{ element, index }">
+      <li class="list-group-item">
+        <button class="handle"></button>
+        <q-form
+          @submit="onSubmit"
+          @reset="onReset"
+          class="q-gutter-md question-form"
+        >
 
-      <draggable
-        tag="ul"
-        :list="list"
-        v-bind="dragOptions"
-        class="list-group"
-        handle=".handle"
-        item-key="name"
-      >
-        <template #item="{ element, index }">
-          <li class="list-group-item">
-            <button class="handle"></button>
-              {{ element.name }}
-            <q-form
-              @submit="onSubmit"
-              @reset="onReset"
-              class="q-gutter-md question-form"
-            >
-              <q-select filled v-model="model" :options="options" label="Label (stacked)" stack-label :dense="dense" :options-dense="denseOpts" />
+          <div class="row q-gutter-sm q-sm-gutter-none">
+            <q-input
+              filled
+              v-model="element.text"
+              label="Question text*"
+              hint="Name and surname"
+              class="col-grow"
+              lazy-rules
+              :rules="[ val => val && val.length > 0 || 'Please type something']"
+            />
+            <q-select 
+              filled 
+              v-model="model" 
+              :options="options" 
+              class="col-grow"
+              label="Type" 
+              hint="Type"
+              stack-label 
+              :dense="dense" 
+              :options-dense="denseOpts"
+            />
+          </div>
 
-              <q-input
-                filled
-                v-model="element.text"
-                label="Your name *"
-                hint="Name and surname"
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
-
-
-              <div>
-                <q-btn label="Submit" type="submit" color="primary"/>
-                <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
-                <q-btn label="Delete" type="reset" color="red" flat class="q-ml-sm" @click="removeAt(index)" />
-              </div>
-            </q-form>
-          </li>
-        </template>
-      </draggable>
-    </div>
-
-    <rawDisplayer class="col-3" :value="list" title="List" />
-  </div>
+          <q-expansion-item  default-opened icon="menu" label="Options" caption="options" >
+            <q-separator />
+            <q-input
+              filled
+              label="Option 1 *"
+              hint="Name and surname"
+              lazy-rules
+              class="q-ma-lg"
+            />
+            <q-input
+              filled
+              label="Your name *"
+              hint="Name and surname"
+              class="q-ma-lg"
+              lazy-rules
+            />
+          </q-expansion-item>
+          <div>
+            <q-btn label="Submit" type="submit" color="primary"/>
+            <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+            <q-btn label="Delete" type="reset" color="red" flat class="q-ml-sm" @click="removeAt(index)" />
+          </div>
+        </q-form>
+      </li>
+    </template>
+  </draggable>
 </template>
 
 <script>
@@ -114,18 +134,24 @@ export default {
 <style lang="scss" scoped>
 
 .handle {
-  float: left;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  display: block;;
+  border: none;
+  background: red;
+  height: 24px;
+  width: 48px;
+  margin: 0 auto;
 }
 
 .list-group {
   list-style: none;
+  background: blue;
+  padding: 12px;
+  
   &-item {
     margin: 12px;
     padding: 12px;
     border: 1px solid red;
-    background: lightcoral;
+    background: #fff;
     border-radius: 1px;
   }
 }
@@ -137,13 +163,10 @@ export default {
 }
 
 .chosen-ticket {
-    background: darkorange !important;
-    opacity: 0;
+    opacity: 1;
 }
 .dragging-ticket {
-    background: darkred !important;
-    background-color: darkred !important;
-    opacity: 1 !important;
+      opacity: 1 !important;
     box-shadow: none !important;
     border: 2px solid black;
 }
