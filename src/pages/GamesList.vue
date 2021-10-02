@@ -34,54 +34,64 @@
             />
           </div>
 
-          <div class="row q-mx-none q-gutter-sm q-sm-gutter-none">
+          <div class="row q-mx-none q-gutter-sm q-sm-gutter-none justify-between ">
             <q-select 
               dense
               filled 
               v-model="model" 
               :options="options" 
-              class="col-grow q-mt-none"
+              class="col "
+              hint="Type"
               label="Type" 
               stack-label 
-              :options-dense="denseOpts"
             />
-
             <q-select 
               dense
               filled 
               v-model="model" 
               :options="options" 
-              class="col-grow q-mt-none"
+              class="col "
+              label="Type" 
+              hint="Subject"
+              stack-label 
+            />
+            <q-input
+              dense
+              v-model.number="model"
+              type="number"
+              label="Type" 
+              hint="Duration"
+              filled
+              class="col "
+            >
+              <template v-slot:append>
+                <q-icon name="schedule" />
+              </template>
+            </q-input>
+            <q-input
+              dense
+              v-model.number="model"
               label="Type" 
               stack-label 
-              :options-dense="denseOpts"
+              type="number"
+              hint="Points"
+              filled
+              class="col "
             />
           </div>
           
-          <q-select
-            filled
-            v-model="tags"
-            use-input
-            multiple
-            option-value="id"
-            option-label="name"
-            use-chips
-            stack-label
-            input-debounce="0"
-            label="Simple filter"
-            :options="Tags"
-            class="full-width"
-            @filter="filterFn"
-            style="width: 250px"
-          >
-            <template v-slot:no-option>
-              <q-item>
-                <q-item-section class="text-grey">
-                  No results
-                </q-item-section>
-              </q-item>
-            </template>
-          </q-select>
+          <div class="q-ml-sm">
+            <!-- <h6 class="q-ma-none">Tags</h6> -->
+            <Multiselect
+              v-model="tags"
+              :options="Tags"
+              mode="tags"
+              placeholder="Select your characters"
+              :searchable="true"
+              :createTag="true"
+              class="q-mt-sm"
+            />
+          </div>
 
           <q-separator />
 
@@ -128,11 +138,9 @@
 
 <script>
 import draggable from "vuedraggable";
+import Multiselect from '@vueform/multiselect'
 import { ref } from 'vue'
 let id=3;
-const Tags = [
-  'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
-]
 
 export default {
   name: "handle",
@@ -140,6 +148,7 @@ export default {
   instruction: "Drag using the handle icon",
   order: 5,
   components: {
+    Multiselect,
     draggable
   },
   data() {
@@ -154,6 +163,9 @@ export default {
       tags: [
         'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
       ],
+      Tags: [
+        'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+      ]
     };
   },
   setup () {
@@ -208,6 +220,8 @@ export default {
   }
 };
 </script>
+
+<style src="@vueform/multiselect/themes/default.css"></style>
 <style lang="scss" scoped>
 
 .handle {
@@ -245,12 +259,13 @@ export default {
 }
 
 .chosen-ticket {
-    opacity: 1;
+  opacity: 1 !important;
+  border: 2px solid #F47878;
 }
 .dragging-ticket {
-      opacity: 1 !important;
+    opacity: 0.8 !important;
     box-shadow: none !important;
-    border: 2px solid black;
+    border: 2px solid #F47878;
 }
 
 .ghost-ticket {
