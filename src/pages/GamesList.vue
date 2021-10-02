@@ -32,6 +32,20 @@
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Please type something']"
             />
+          </div>
+
+          <div class="row q-mx-none q-gutter-sm q-sm-gutter-none">
+            <q-select 
+              dense
+              filled 
+              v-model="model" 
+              :options="options" 
+              class="col-grow q-mt-none"
+              label="Type" 
+              stack-label 
+              :options-dense="denseOpts"
+            />
+
             <q-select 
               dense
               filled 
@@ -43,6 +57,31 @@
               :options-dense="denseOpts"
             />
           </div>
+          
+          <q-select
+            filled
+            v-model="tags"
+            use-input
+            multiple
+            option-value="id"
+            option-label="name"
+            use-chips
+            stack-label
+            input-debounce="0"
+            label="Simple filter"
+            :options="Tags"
+            class="full-width"
+            @filter="filterFn"
+            style="width: 250px"
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-grey">
+                  No results
+                </q-item-section>
+              </q-item>
+            </template>
+          </q-select>
 
           <q-separator />
 
@@ -91,6 +130,10 @@
 import draggable from "vuedraggable";
 import { ref } from 'vue'
 let id=3;
+const Tags = [
+  'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+]
+
 export default {
   name: "handle",
   display: "Handle",
@@ -108,6 +151,9 @@ export default {
       ],
       dragging: false,
       redModel: true,
+      tags: [
+        'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+      ],
     };
   },
   setup () {
@@ -145,6 +191,20 @@ export default {
       id++;
       this.list.push({ name: "Juan " + id, id, text: "" });
     },
+    filterFn (val, update) {
+      if (val === '') {
+        update(() => {
+          this.tags = Tags
+        })
+        return
+      }
+
+      update(() => {
+        const needle = val.toLowerCase()
+        this.tags = Tags.filter(v => v.toLowerCase().indexOf(needle) > -1)
+        
+      })
+    }
   }
 };
 </script>
