@@ -1,7 +1,7 @@
 <template>
-  <div class="games-list">
+  <div class="wrapper">
 
-    <h1>Games List</h1>
+    <h1>Join Game</h1>
 
   </div>
 </template>
@@ -11,11 +11,12 @@
 export default {
   data() {
     return {
-    }
-  }
+    };
+  },
 }
+
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 
 </style>

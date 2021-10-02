@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar class="bg-secondary" >
         <q-btn
           flat
           dense
@@ -12,10 +12,11 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          UchiHack
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn to='/authorization' label="Login" color="" flat></q-btn>
+        <!-- <div>Quasar v{{ $q.version }}</div> -->
       </q-toolbar>
     </q-header>
 
@@ -31,11 +32,25 @@
           Essential Links
         </q-item-label>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item
+          clickable
+        >
+          <q-btn to="/join_game" color="primary" icon-right="navigation" label="Join Game" push class="fit q-py-md">  </q-btn>
+        </q-item>
+
+        <q-item
+          clickable
+        >
+          <q-btn to="/create_game" color="secondary" icon-right="add" label="Create Game" push class="fit q-py-md">  </q-btn>
+        </q-item>
+
+        <q-item
+          clickable
+        >
+          <q-btn to="/" color="secondary" icon-right="my_location" label="Explore" class="fit q-py-sm" flat> </q-btn>
+        </q-item>
+
+
       </q-list>
     </q-drawer>
 

@@ -5,20 +5,9 @@
     target="_blank"
     :href="link"
   >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
-      <q-icon :name="icon" />
-    </q-item-section>
-
-    <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>
-        {{ caption }}
-      </q-item-label>
-    </q-item-section>
+    <q-btn color="primary" icon-right="add" push class="text-center"> Create Game </q-btn>
   </q-item>
+
 </template>
 
 <script>
