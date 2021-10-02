@@ -1,7 +1,54 @@
 <template>
-  <div class="questions">
+<div class="wrapper q-py-md ">
+  <div class="game-details shadow-2 bg-white">
+    <q-form
+      class="q-gutter-md question-form no-margin"
+    >
+      <h3 class="q-ma-none text-h4 text-weight-bold">Create Game</h3>
+      <div class="row q-mx-none q-col-gutter-sm ">
+        <q-input
+          label="What is Game Title"
+          hint="Game Title"
+          class="col-md-grow col-sm-12 col-xs-12 q-ml-none "
+          lazy-rules
+          v-model="gameTitle"
+          :rules="[ val => val && val.length > 0 || 'Please type something']"
+        />
 
-    <div class="questions-header">
+        <q-select 
+          filled
+          v-model="subject"
+          :options="subjects" 
+          class="col-md-grow col-sm-12 col-xs-12" 
+          hint="Subject"
+          label="Subject" 
+          stack-label 
+        />
+      </div>
+      
+      <div class="q-ml-sm">
+        <h6 class="q-ma-none text-subtitle2 text-weight-thin">Tags</h6>
+        <Multiselect
+          :classes="{'tag': 'multiselect-tag-custom'}"
+          v-model="tags"
+          :options="Tags"
+          mode="tags"
+          placeholder="Select your characters"
+          :searchable="true"
+          :createTag="true"
+          class="q-mt-sm"
+        />
+      </div>
+
+      <q-separator />
+      
+      <q-btn v-if="step < 2" label="Create Game" color="primary" push class="q-ml-sm" @click="createGame" />
+    </q-form>
+  </div>
+
+  <div v-if="step==2" class="questions bg-secondary shadow-2">
+
+    <div class="questions-header bg-white full-width">
       <h3 class="q-ma-none text-h4 text-weight-thin">Questions</h3>
       <q-btn icon="add" color="primary" round @click="add">
         <q-tooltip class="bg-black">Add new question</q-tooltip>
@@ -166,12 +213,18 @@
       </template>
     </draggable>
 
+    <q-btn label="Save" color="primary" push class="q-ml-sm" @click="createGame" />
+
   </div>
+</div>
 </template>
 
 <script>
 import draggable from "vuedraggable";
 import Multiselect from '@vueform/multiselect'
+import {api as ApiService} from '../services/api.service'
+
+import { useQuasar } from 'quasar'
 
 export default {
   name: "handle",
@@ -184,6 +237,7 @@ export default {
   },
   data() {
     return {
+      step: 1,
       questions: [
       ],
       simpleQuestion: {
@@ -197,7 +251,6 @@ export default {
       dragging: false,
       redModel: true,
       tags: [
-        'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
       ],
       Tags: [
         'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
@@ -205,7 +258,24 @@ export default {
       types: [
         'test', 'fill_in'
       ],
+      subjects: [
+        'History', 'Geography', 'Physics'
+      ],
+      subject: '',
+      gameTitle: '',
     };
+  },
+  
+  setup () {
+    const $q = useQuasar()
+    return {
+      triggerNegative () {
+        $q.notify({
+          type: 'negative',
+          message: 'Error connecting with server.'
+        })
+      },
+    }
   },
   watch: {
   },
@@ -225,6 +295,20 @@ export default {
     }
   },
   methods: {
+    createGame(){
+      ApiService.post('game/create-game', {
+        "game_title": this.gameTitle,
+        "subject_type": this.subject,
+        "tags": this.tags,
+      })
+      .then(({data}) => {
+        this.step = 2
+        this.simpleQuestion.game_id = data._id
+      })
+      .catch(
+        () => this.triggerNegative()
+      )
+    },
     removeAt(idx) {
       this.questions.splice(idx, 1);
     },
@@ -281,19 +365,25 @@ export default {
 
 <style lang="scss" scoped>
 .questions {
-  margin: 0;
+  margin: 12px;
+  margin-top: 24px;
   padding: 0;
-  padding-top: 24px;
+  padding-bottom: 12px;
+  border-radius: 5px;
+  // padding-top: 24px;
   // background: $secondary;
   &-header {
     display: flex;
     justify-content: flex-start;
     align-content: center;
     gap: 24px;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     // height: 64px;
     // background: red;
     margin: 0 24px;
-    padding: 24px 0;
+    padding: 12px 12px;
     h3 {
       font-weight: bold;
       // line-height: 64px;
@@ -314,10 +404,13 @@ export default {
   padding: 12px;
   margin-bottom: 0;
 
-  min-height: 100vh;
+  min-height: 200px;
   
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
   &-item {
-    margin: 12px;
+    margin: 12px 0;
     padding: 12px;
     background: #fff;
     border-radius: 5px;
@@ -355,5 +448,11 @@ export default {
   opacity: 1 !important;
 }
 
+.game-details {
+  // background: $secondary;
+  margin: 12px;
+  padding: 12px;
+  border-radius: 5px;
+}
 
 </style>
