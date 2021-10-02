@@ -12,54 +12,70 @@
     item-key="name"
   >
     <template #item="{ element, index }">
-      <li class="list-group-item">
-        <button class="handle"></button>
+      <li class="list-group-item shadow-2"> 
+        <q-btn icon="menu" class="handle" flat>
+          <q-tooltip class="bg-accent">Drag to reorder</q-tooltip>
+        </q-btn>
+
         <q-form
-          @submit="onSubmit"
-          @reset="onReset"
-          class="q-gutter-md question-form"
+          class="q-gutter-md question-form no-margin"
         >
 
-          <div class="row q-gutter-sm q-sm-gutter-none">
+          <div class="row q-mx-none q-gutter-sm q-sm-gutter-none">
             <q-input
               filled
+              dense
               v-model="element.text"
               label="Question text*"
-              hint="Name and surname"
-              class="col-grow"
+              hint="Question"
+              class="col-grow q-mt-none"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Please type something']"
             />
             <q-select 
+              dense
               filled 
               v-model="model" 
               :options="options" 
-              class="col-grow"
+              class="col-grow q-mt-none"
               label="Type" 
-              hint="Type"
               stack-label 
-              :dense="dense" 
               :options-dense="denseOpts"
             />
           </div>
 
-          <q-expansion-item  default-opened icon="menu" label="Options" caption="options" >
-            <q-separator />
-            <q-input
-              filled
-              label="Option 1 *"
-              hint="Name and surname"
-              lazy-rules
-              class="q-ma-lg"
-            />
-            <q-input
-              filled
-              label="Your name *"
-              hint="Name and surname"
-              class="q-ma-lg"
-              lazy-rules
-            />
-          </q-expansion-item>
+          <q-separator />
+
+          <q-list class="options-list q-mt-none q-ml-none" dense >
+            <q-item class="option align-center" clickable dense>
+              <q-item-section side>
+                <span class="text-bold">1</span>
+              </q-item-section>
+              <q-item-section>
+                <q-input
+                  outlined
+                  label="Option 1 *"
+                  lazy-rules
+                  dense
+                  class="q-ma-none"
+                />
+              </q-item-section>
+              <q-item-section side>
+                <q-toggle
+                  :false-value="true"
+                  :true-value="false"
+                  color="red"
+                  v-model="redModel"
+                >
+                  <q-tooltip>
+                    Right asnwer
+                  </q-tooltip>
+                </q-toggle>
+                
+              </q-item-section>
+            </q-item>
+          </q-list>
+
           <div>
             <q-btn label="Submit" type="submit" color="primary"/>
             <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
@@ -90,7 +106,8 @@ export default {
         { name: "Joao", text: "", id: 1 },
         { name: "Jean", text: "", id: 2 }
       ],
-      dragging: false
+      dragging: false,
+      redModel: true,
     };
   },
   setup () {
@@ -136,30 +153,35 @@ export default {
 .handle {
   display: block;;
   border: none;
-  background: red;
-  height: 24px;
   width: 48px;
   margin: 0 auto;
 }
 
 .list-group {
   list-style: none;
-  background: blue;
+  background: lightblue;
   padding: 12px;
   
   &-item {
     margin: 12px;
     padding: 12px;
-    border: 1px solid red;
     background: #fff;
-    border-radius: 1px;
+    border-radius: 5px;
+  }
+}
+
+.options-list {
+  padding: 12px;
+  .option {
+    margin: auto 0;
+    padding: 2px 0;
   }
 }
 
 .question-form {
   background: #fff;
   margin: 12px;
-  padding: 12px;  
+  // padding: 12px;  
 }
 
 .chosen-ticket {
