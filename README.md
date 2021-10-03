@@ -35,6 +35,10 @@ npm install
 node start
 ```
 
+### UI/UX design
+```https://www.figma.com/file/Wnulk0vJqegwnu7G1DIU0M/quiz?node-id=0%3A1
+```
+
 #### PixelArt sprites:
 https://github.com/PolyAtomicIon/uchi-hack-app/tree/main/public/sprites
 
