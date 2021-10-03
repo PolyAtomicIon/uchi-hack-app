@@ -1,0 +1,1 @@
+"use strict";(self["webpackChunkquiz_battle"]=self["webpackChunkquiz_battle"]||[]).push([[78],{2078:(t,e,s)=>{s.r(e),s.d(e,{default:()=>i});var a=s(3673);const n={class:"games-list"},u=(0,a._)("h1",null,"Games List",-1),l=[u];function r(t,e,s,u,r,c){return(0,a.wg)(),(0,a.iD)("div",n,l)}const c={data(){return{}}};c.render=r;const i=c}}]);

@@ -1,6 +1,17 @@
 <template>
   <div class="">
-      
+      <section class="hexagon-gallery">
+      <div class="hex"><img src="sprites/map_clearTile.png" alt="some"></div>
+      <div class="hex"><img src="sprites/map_castleTileRed.png" alt="some"></div>
+      <div class="hex"><img src="sprites/map_castleTileBlue.png" alt="some"></div>
+      <div class="hex"><img src="sprites/map_houseTileBlue.png" alt="some"></div>
+      <div class="hex"><img src="sprites/map_houseTileRed.png" alt="some"></div>
+      <div class="hex"><img src="sprites/map_houseTileBlue.png" alt="some"></div>
+      <div class="hex"><img src="sprites/map_castleTileRed.png" alt="some"></div>
+      <div class="hex"><img src="sprites/map_houseTileBlue.png" alt="some"></div>
+      <div class="hex"><img src="sprites/map_castleTileRed.png" alt="some"></div>
+      <div class="hex"><img src="sprites/map_castleTileRed.png" alt="some"></div>
+    </section>
   </div>
 </template>
 
@@ -36,291 +47,81 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-:root {
- /* Change this to change the appearance of the hexaons */
-  --hex-width: 100px; 
-  --hex-between: 10px;
-  
-  /* Other hexagon dimentions */
-  --hex-height: calc(var(--hex-width) / 1.73 /* sqrt(3) */);
-  --hex-margin: calc(var(--hex-width) / 2);
-  --hex-border: calc(var(--hex-margin) / 1.73 /* sqrt(3) */);
-  --hex-transition: all .2s ease;
-  
-  /* Colors */
-  --color-hex-default: #000000;
-  --color-hex-hover:   #FFFFFF;
-  --color-angular:     #DD0031;
-  --color-atom:        #66595C;
-  --color-bootstrap:   #563D7C;
-  --color-circleci:    #343434;
-  --color-css:         #1572B6;
-  --color-git:         #F14E32;
-  --color-gulp:        #DA4648;
-  --color-haskell:     #5D4F85;
-  --color-html:        #E34F26;
-  --color-javascript:  #F7DF1E;
-  --color-meteor:      #DE4F4F;
-  --color-python:      #3776AB;
-  --color-rails:       #CC0000;
-  --color-sass:        #CC6699;
-  --color-vuejs:       #4FC08D;
-  --color-webpack:     #8DD6F9;
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
-/* Hexagons */
-.hexagon-container {
+.hexagon-gallery {
+  margin: auto;
+  margin-top: 50px;
+  width: 200px;
   display: grid;
-  grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width);
-  grid-auto-rows: calc(var(--hex-width) - 28.87px/2);
-  grid-gap: var(--hex-between) var(--hex-between);
-  padding-bottom: var(--hex-border);
+  grid-template-columns: repeat(8, 1fr);
+  grid-auto-rows: 32px;
+  grid-gap: 14px;
+  padding-bottom: 50px;
 }
-.hexagon {
-  align-items: center;
-  background-color: var(--color-hex-default);
-  cursor: pointer;
+
+.hex {
   display: flex;
-  fill: white;
-  height: var(--hex-height);
-  justify-content: center;
-  margin: var(--hex-border) 0;
   position: relative;
-  transition: var(--hex-transition);
-  width: var(--hex-width);
+  width: 48px;
+  height: 55px;
+  background-color: #424242;
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
-.hexagon::after,
-.hexagon::before {
-  border-left: var(--hex-margin) solid transparent;
-  border-right: var(--hex-margin) solid transparent;
-  content: "";
-  left: 0;
-  position: absolute;
-  transition: var(--hex-transition);
-  width: 0;
-}
-.hexagon::after {
-  border-top: var(--hex-border) solid var(--color-hex-default);
-  top: 100%;
-  width: 0;
-}
-.hexagon::before {
-  border-bottom: var(--hex-border) solid var(--color-hex-default);
-  bottom: 100%;
-}
-  
-.hexagon:hover {
-  background-color: var(--color-hex-hover);
-}
-.hexagon:hover::after,
-.hexagon:hover::before {
-  border-top-color: var(--color-hex-hover);
-  border-bottom-color: var(--color-hex-hover);
-  }
- 
-.hexagon:nth-child(8n + 5),
-.hexagon:nth-child(8n + 6),
-.hexagon:nth-child(8n + 7),
-.hexagon:nth-child(8n + 8) {
-  margin-left: calc(var(--hex-width) / 2 + var(--hex-between) / 2);
+.hex:first-child {
+  grid-row-start: 1;
+  grid-column: 2 / span 2;
 }
 
-.hexagon > svg {
-  height: 75%;
-  transition: var(--hex-transition);
+.hex:nth-child(2) {
+  grid-row-start: 1;
+  grid-column: 4 / span 2;
 }
 
-/* Colors */
-.color-sass {
-  background-color: var(--color-sass);
-}
-.color-sass::after,
-.color-sass::before {
-  border-top-color: var(--color-sass);
-  border-bottom-color: var(--color-sass);
-}
-.color-sass:hover {
-  fill: var(--color-sass);
+.hex:nth-child(3) {
+  grid-row-start: 1;
+  grid-column: 6 / span 2;
 }
 
-.color-angular {
-  background-color: var(--color-angular);
-}
-.color-angular::after,
-.color-angular::before {
-  border-top-color: var(--color-angular);
-  border-bottom-color: var(--color-angular);
-}
-.color-angular:hover {
-  fill: var(--color-angular);
+.hex:nth-child(4) {
+  grid-row-start: 2;
+  grid-column: 1 / span 2;
 }
 
-.color-gulp {
-  background-color: var(--color-gulp);
-} 
-.color-gulp::after,
-.color-gulp::before {
-  border-top-color: var(--color-gulp);
-  border-bottom-color: var(--color-gulp);
-}
-.color-gulp:hover {
-  fill: var(--color-gulp);
+.hex:nth-child(5) {
+  grid-row-start: 2;
+  grid-column: 3 / span 2;
 }
 
-.color-rails {
-  background-color: var(--color-rails);
-}
-.color-rails::after,
-.color-rails::before {
-  border-top-color: var(--color-rails);
-  border-bottom-color: var(--color-rails);
-}
-.color-rails:hover {
-  fill: var(--color-rails);
+.hex:nth-child(6) {
+  grid-row-start: 2;
+  grid-column: 5 / span 2;
 }
 
-.color-git {
-  background-color: var(--color-git);
-}
-.color-git::after,
-.color-git::before {
-  border-top-color: var(--color-git);
-  border-bottom-color: var(--color-git);
-}
-.color-git:hover {
-  fill: var(--color-git);
+.hex:nth-child(7) {
+  grid-row-start: 2;
+  grid-column: 7 / span 2;
 }
 
-.color-html {
-  background-color: var(--color-html);
-}
-.color-html::after,
-.color-html::before {
-  border-top-color: var(--color-html);
-  border-bottom-color: var(--color-html);
-}
-.color-html:hover {
-  fill: var(--color-html);
+.hex:nth-child(8) {
+  grid-row-start: 3;
+  grid-column: 2 / span 2;
 }
 
-.color-javascript {
-  background-color: var(--color-javascript);
-}
-.color-javascript::after,
-.color-javascript::before {
-  border-top-color: var(--color-javascript);
-  border-bottom-color: var(--color-javascript);
-}
-.color-javascript:hover {
-  fill: var(--color-javascript);
+.hex:nth-child(9) {
+  grid-row-start: 3;
+  grid-column: 4 / span 2;
 }
 
-.color-vuejs {
-  background-color: var(--color-vuejs);
-}
-.color-vuejs::after,
-.color-vuejs::before {
-  border-top-color: var(--color-vuejs);
-  border-bottom-color: var(--color-vuejs);
-}
-.color-vuejs:hover {
-  fill: var(--color-vuejs);
-}
-
-.color-circleci {
-  background-color: var(--color-circleci);
-}
-.color-circleci::after,
-.color-circleci::before {
-  border-top-color: var(--color-circleci);
-  border-bottom-color: var(--color-circleci);
-}
-.color-circleci:hover {
-  fill: var(--color-circleci);
-}
-
-.color-webpack {
-  background-color: var(--color-webpack);
-}
-.color-webpack::after,
-.color-webpack::before {
-  border-top-color: var(--color-webpack);
-  border-bottom-color: var(--color-webpack);
-}
-.color-webpack:hover {
-  fill: var(--color-webpack);
-}
-
-.color-css {
-  background-color: var(--color-css);
-}
-.color-css::after,
-.color-css::before {
-  border-top-color: var(--color-css);
-  border-bottom-color: var(--color-css);
-}
-.color-css:hover {
-  fill: var(--color-css);
-}
-
-.color-python {
-  background-color: var(--color-python);
-}
-.color-python::after,
-.color-python::before {
-  border-top-color: var(--color-python);
-  border-bottom-color: var(--color-python);
-}
-.color-python:hover {
-  fill: var(--color-python);
-}
-
-.color-haskell {
-  background-color: var(--color-haskell);
-}
-.color-haskell::after,
-.color-haskell::before {
-  border-top-color: var(--color-haskell);
-  border-bottom-color: var(--color-haskell);
-}
-.color-haskell:hover {
-  fill: var(--color-haskell);
-}
-
-.color-bootstrap {
-  background-color: var(--color-bootstrap);
-}
-.color-bootstrap::after,
-.color-bootstrap::before {
-  border-top-color: var(--color-bootstrap);
-  border-bottom-color: var(--color-bootstrap);
-}
-.color-bootstrap:hover {
-  fill: var(--color-bootstrap);
-}
-
-.color-atom {
-  background-color: var(--color-atom);
-}
-.color-atom::after,
-.color-atom::before {
-  border-top-color: var(--color-atom);
-  border-bottom-color: var(--color-atom);
-}
-.color-atom:hover {
-  fill: var(--color-atom);
-}
-
-.color-meteor {
-  background-color: var(--color-meteor);
-}
-.color-meteor::after,
-.color-meteor::before {
-  border-top-color: var(--color-meteor);
-  border-bottom-color: var(--color-meteor);
-}
-.color-meteor:hover {
-  fill: var(--color-meteor);
+.hex:nth-child(10) {
+  grid-row-start: 3;
+  grid-column: 6 / span 2;
 }
 </style>

@@ -35,7 +35,7 @@
         <q-item
           clickable
         >
-          <q-btn to="/join_game" color="primary" icon-right="navigation" label="Join Game" push class="fit q-py-md">  </q-btn>
+          <q-btn to="/game" color="primary" icon-right="navigation" label="Join Game" push class="fit q-py-md">  </q-btn>
         </q-item>
 
         <q-item
