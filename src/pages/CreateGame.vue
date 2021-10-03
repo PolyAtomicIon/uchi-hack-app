@@ -46,7 +46,7 @@
     </q-form>
   </div>
 
-  <div v-if="step==2" class="questions bg-secondary shadow-2">
+  <div v-if="step<3" class="questions bg-secondary shadow-2">
 
     <div class="questions-header bg-white full-width">
       <h3 class="q-ma-none text-h4 text-weight-thin">Questions</h3>

@@ -21,6 +21,11 @@ const routes = [{
                 path: '/join_game',
                 component: () =>
                     import ('pages/JoinGame.vue')
+            },
+            {
+                path: '/game',
+                component: () =>
+                    import ('pages/Game.vue')
             }
         ]
     },
