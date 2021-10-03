@@ -18,23 +18,22 @@
 ## УСТАНОВКА, НАСТРОЙКА
 ### Выполните
 #### frontend:
-sudo apt-get update
+```sudo apt-get update
 sudo apt-get upgrade
 git clone https://github.com/PolyAtomicIon/uchi-hack-app
 cd uchi-hack-app
 npm install
 quasar dev
-...
+```
 
 #### backend:
-sudo apt-get update
+```sudo apt-get update
 sudo apt-get upgrade
 git clone https://github.com/dauletakberdiyev/websocket-kahoot-clone
 cd websocket-kahoot-clone
 npm install
 node start
-База данных
-
+```
 ## РАЗРАБОТЧИКИ
 Ернат Бекзат frontend https://t.me/BekzatStudnet
 Даулет Акберидиев backend https://t.me/dauletakberdiyev
