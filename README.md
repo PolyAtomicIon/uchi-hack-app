@@ -36,7 +36,7 @@ node start
 ```
 
 #### PixelArt sprites:
-https://github.com/PolyAtomicIon/uchi-hack-app/public/sprites
+https://github.com/PolyAtomicIon/uchi-hack-app/tree/main/public/sprites
 
 ## РАЗРАБОТЧИКИ
 Ернат Бекзат frontend https://t.me/BekzatStudnet  
