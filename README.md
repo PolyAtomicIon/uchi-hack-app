@@ -34,6 +34,10 @@ cd websocket-kahoot-clone
 npm install
 node start
 ```
+
+#### PixelArt sprites:
+https://github.com/PolyAtomicIon/uchi-hack-app/public/sprites
+
 ## РАЗРАБОТЧИКИ
 Ернат Бекзат frontend https://t.me/BekzatStudnet  
 Даулет Акбердиев backend https://t.me/dauletakberdiyev
