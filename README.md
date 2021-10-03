@@ -10,10 +10,10 @@
     • Vue (Quasar).
     • Mongo, Express, Node js
 ## Демо
-Приложение доступно по адресу: нет ссылки
-Исходники Backend-а доступны по адресу: https://github.com/dauletakberdiyev/websocket-kahoot-clone
-Скринкаст доступен по адресу: ссылка
-НЕОБХОДИМЫЕ УСЛОВИЯ ДЛЯ РАБОТЫ ПРИЛОЖЕНИЯ
+Приложение доступно по адресу: нет ссылки  
+Исходники Backend-а доступны по адресу: https://github.com/dauletakberdiyev/websocket-kahoot-clone  
+Скринкаст доступен по адресу: ссылка  
+НЕОБХОДИМЫЕ УСЛОВИЯ ДЛЯ РАБОТЫ ПРИЛОЖЕНИЯ  
 
 ## УСТАНОВКА, НАСТРОЙКА
 ### Выполните
@@ -35,7 +35,7 @@ npm install
 node start
 ```
 ## РАЗРАБОТЧИКИ
-Ернат Бекзат frontend https://t.me/BekzatStudnet
+Ернат Бекзат frontend https://t.me/BekzatStudnet  
 Даулет Акберидиев backend https://t.me/dauletakberdiyev
 
 ## Install the dependencies
