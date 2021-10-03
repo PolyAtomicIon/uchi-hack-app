@@ -10,9 +10,9 @@
     • Vue (Quasar).
     • Mongo, Express, Node js
 ## Демо
-Приложение доступно по адресу: https://youtu.be/pgAoEz7yZZ0  
+Приложение доступно по адресу: не доступно
 Исходники Backend-а доступны по адресу: https://github.com/dauletakberdiyev/websocket-kahoot-clone  
-Скринкаст доступен по адресу: ссылка  
+Скринкаст доступен по адресу: https://youtu.be/pgAoEz7yZZ0 
 НЕОБХОДИМЫЕ УСЛОВИЯ ДЛЯ РАБОТЫ ПРИЛОЖЕНИЯ  
 
 ## УСТАНОВКА, НАСТРОЙКА
