@@ -36,7 +36,7 @@ node start
 ```
 ## РАЗРАБОТЧИКИ
 Ернат Бекзат frontend https://t.me/BekzatStudnet  
-Даулет Акберидиев backend https://t.me/dauletakberdiyev
+Даулет Акбердиев backend https://t.me/dauletakberdiyev
 
 ## Install the dependencies
 ```bash
